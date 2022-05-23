@@ -1,0 +1,1 @@
+https://dev.to/paviad/angular-wait-for-all-images-to-load-3hp1

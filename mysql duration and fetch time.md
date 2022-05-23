@@ -1,0 +1,1 @@
+[link](https://stackoverflow.com/questions/9425134/mysql-duration-and-fetch-time/68047629#68047629)
