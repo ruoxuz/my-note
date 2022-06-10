@@ -1,3 +1,5 @@
+# maven添加本地jar包
+
     <dependency>  
         <groupId>ojdbc6</groupId>  
         <artifactId>ojdbc6</artifactId>  
