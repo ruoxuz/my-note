@@ -1,11 +1,13 @@
-1.在entity和dto里写构造方法
+# dto与entity之间的转换
+
+## 1. 在entity和dto里写构造方法
 
     public class StudentDto {
         private String studentId;
         private String firstName;
         private String lastName;
         private int year;
-    
+
         public StudentDto(Student entity) {
             this.studentId = entity.getStudentId();
             this.firstName = entity.getFirstName();
@@ -13,15 +15,15 @@
             this.year = entity.getYear();
         }
     }
-    
-2.在entity和dto里写转换方法
+
+## 2. 在entity和dto里写转换方法
 
     public class StudentDto {
         private String studentId;
         private String firstName;
         private String lastName;
         private int year;
-    
+
         public Student toEntity() {
             Student entity = new Student();
     
@@ -33,11 +35,11 @@
             return entity;
         }
     }
-    
-3.专门写一个class，里面写转换方法
+
+## 3. 专门写一个class，里面写转换方法
 
     public class StudentMapper {
-    
+
         public StudentDto toDto(Student entity) {
             StudentDto dto = new StudentDto();
             dto.setStudentId(entity.getStudentId());
@@ -58,16 +60,16 @@
             return entity;
         }
     }
-    
-4.使用第三方库Model Mapper Library
 
-5.BeanUtils
+## 4. 使用第三方库Model Mapper Library
+
+## 5. BeanUtils
 
     import org.springframework.beans.BeanUtils
     ...
     BeanUtils.copyProperties(sourceObject, targetObject);
     
     BeanUtils.copyProperties(sourceObj, targetObj, "propertyToIgnoreA", "propertyToIgnoreB", "propertyToIgnoreC");
-    
-[link1](https://stackoverflow.com/questions/28703401/conversion-of-dto-to-entity-and-vice-versa/54478261)
-[link2](https://www.amitph.com/spring-entity-to-dto/)
+
+[Conversion of DTO to entity and vice-versa](https://stackoverflow.com/questions/28703401/conversion-of-dto-to-entity-and-vice-versa/54478261)
+[Convert Entity To DTO In Spring REST API](https://www.amitph.com/spring-entity-to-dto/)

@@ -18,10 +18,12 @@
     
     select SQL_NO_CACHE * from project WHERE (del_flg = false and foreigner = 1 and project_type = 1 and match(name) against('リーダー経験' in boolean mode)) order by id desc LIMIT 50 ;
 
-[link1](https://blog.csdn.net/u013887008/article/details/106757993)
+[mysql ngram全文检索引擎](https://blog.csdn.net/u013887008/article/details/106757993)
 
-[link2](https://blog.csdn.net/mrzhouxiaofei/article/details/79940958)
+[MySQL 之全文索引](https://blog.csdn.net/mrzhouxiaofei/article/details/79940958)
 
-[link3](https://blog.csdn.net/belongtocode/article/details/102990743)
+[MySQL全文索引和like](https://blog.csdn.net/belongtocode/article/details/102990743)
 
-[link4](https://dev.mysql.com/doc/refman/5.7/en/fulltext-search-ngram.html)
+[ngram Full-Text Parser](https://dev.mysql.com/doc/refman/5.7/en/fulltext-search-ngram.html)
+
+[Boolean Full-Text Searches](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)

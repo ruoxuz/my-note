@@ -12,4 +12,4 @@
 
         $docker run -itd --name redis-test -p 6379:6379 redis
 
-<https://www.runoob.com/docker/docker-install-redis.html>
+[Docker 安装 Redis](https://www.runoob.com/docker/docker-install-redis.html)

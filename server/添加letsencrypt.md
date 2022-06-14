@@ -1,6 +1,9 @@
+# 添加letsencrypt
+
 有个坑，nginx.conf里不能有汉字日语等，会报错
 
-##### Step 1 — Installing the Certbot Let’s Encrypt Client
+## Step 1 — Installing the Certbot Let’s Encrypt Client
+
 The first step to using Let’s Encrypt to obtain an SSL certificate is to install the certbot software on your server. Currently, the best way to install this is through the EPEL repository.
 
 Enable access to the EPEL repository on your server by typing:
@@ -11,7 +14,8 @@ Once the repository has been enabled, you can obtain the certbot-nginx package b
     sudo yum install certbot-nginx
 The certbot Let’s Encrypt client is now installed and ready to use.
 
-##### Step 2 — Setting up Nginx
+## Step 2 — Setting up Nginx
+
 If you haven’t installed Nginx yet, you can do so now. The EPEL repository should already be enabled from the previous section, so you can install Nginx by typing:
 
     sudo yum install nginx
@@ -37,7 +41,8 @@ If that runs with no errors, reload Nginx to load the new configuration:
     sudo systemctl reload nginx
 Certbot will now be able to find the correct server block and update it. Now we’ll update our firewall to allow HTTPS traffic.
 
-##### Step 3 — Updating the Firewall
+## Step 3 — Updating the Firewall
+
 If you have a firewall enabled, make sure port 80 and 443 are open to incoming traffic. If you are not running a firewall, you can skip ahead.
 
 If you have a firewalld firewall running, you can open these ports by typing:
@@ -51,7 +56,8 @@ If have an iptables firewall running, the commands you need to run are highly de
     sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 We’re now ready to run Certbot and fetch our certificates.
 
-##### Step 4 — Obtaining a Certificate
+## Step 4 — Obtaining a Certificate
+
 Certbot provides a variety of ways to obtain SSL certificates, through various plugins. The Nginx plugin will take care of reconfiguring Nginx and reloading the config whenever necessary:
 
     sudo certbot --nginx -d example.com -d www.example.com
@@ -89,7 +95,8 @@ Select your choice then hit ENTER. The configuration will be updated, and Nginx 
        Donating to EFF:                    https://eff.org/donate-le
 Your certificates are downloaded, installed, and loaded. Try reloading your website using https:// and notice your browser’s security indicator. It should represent that the site is properly secured, usually with a green lock icon.
 
-##### Step 5 — Updating Diffie-Hellman Parameters
+## Step 5 — Updating Diffie-Hellman Parameters
+
 If you test your server using the SSL Labs Server Test now, it will only get a B grade due to weak Diffie-Hellman parameters. This effects the security of the initial key exchange between our server and its users. We can fix this by creating a new dhparam.pem file and adding it to our server block.
 
 Create the file using openssl:
@@ -111,7 +118,8 @@ If you have no errors, reload Nginx:
     sudo systemctl reload nginx
 Your site is now more secure, and should receive an A rating.
 
-##### Step 6 — Setting Up Auto Renewal
+## Step 6 — Setting Up Auto Renewal
+
 Let’s Encrypt’s certificates are only valid for ninety days. This is to encourage users to automate their certificate renewal process. We’ll need to set up a regularly run command to check for expiring certificates and renew them automatically.
 
 To run the renewal check daily, we will use cron, a standard system service for running periodic jobs. We tell cron what to do by opening and editing a file called a crontab.
@@ -130,7 +138,8 @@ cron will now run this command daily. All installed certificates will be automat
 
 For more information on how to create and schedule cron jobs, you can check our How to Use Cron to Automate Tasks in a VPS guide.
 
-##### Conclusion
+## Conclusion
+
 In this tutorial we’ve installed the Let’s Encrypt client certbot, downloaded SSL certificates for our domain, configured Nginx to use these certificates, and set up automatic certificate renewal. If you have further questions about using Certbot, their documentation is a good place to start.
 
-https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-centos-7
+[How To Secure Nginx with Let's Encrypt on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-centos-7)

@@ -1,8 +1,12 @@
-#### Prerequisites
+# HTTP Basic Authentication
+
+## Prerequisites
+
 - NGINX Plus or NGINX Open Source
 - Password file creation utility such as apache2-utils (Debian, Ubuntu) or httpd-tools (RHEL/CentOS/Oracle Linux).
 
-#### Creating a Password File
+## Creating a Password File
+
 To create username-password pairs, use a password file creation utility, for example, apache2-utils or httpd-tools
 
 1. Verify that apache2-utils (Debian, Ubuntu) or httpd-tools (RHEL/CentOS/Oracle Linux) is installed.
@@ -22,7 +26,8 @@ To create username-password pairs, use a password file creation utility, for exa
         user2:$apr1$QdR8fNLT$vbCEEzDj7LyqCMyNpSoBh/
         user3:$apr1$Mr5A0e.U$0j39Hp5FfxRkneklXaMrr/
 
-#### Configuring NGINX and NGINX Plus for HTTP Basic Authentication
+## Configuring NGINX and NGINX Plus for HTTP Basic Authentication
+
 1. Inside a location that you are going to protect, specify the auth_basic directive and give a name to the password-protected area. The name of the area will be shown in the username/password dialog window when asking for credentials:
 
         location /api {
@@ -35,6 +40,7 @@ To create username-password pairs, use a password file creation utility, for exa
             auth_basic           “Administrator’s Area”;
             auth_basic_user_file /etc/apache2/.htpasswd; 
         }
+
 Alternatively, you you can limit access to the whole website with basic authentication but still make some website areas public. In this case, specify the off parameter of the auth_basic directive that cancels inheritance from upper configuration levels:
 
         server {
@@ -47,12 +53,14 @@ Alternatively, you you can limit access to the whole website with basic authenti
             }
         }
 
-#### Combining Basic Authentication with Access Restriction by IP Address
+## Combining Basic Authentication with Access Restriction by IP Address
+
 HTTP basic authentication can be effectively combined with access restriction by IP address. You can implement at least two scenarios:
 
 - a user must be both authenticated and have a valid IP address
 - a user must be either authenticated, or have a valid IP address
-Allow or deny access from particular IP addresses with the allow and deny directives:
+
+1. Allow or deny access from particular IP addresses with the allow and deny directives:
 
         location /api {
             #...
@@ -78,7 +86,8 @@ Allow or deny access from particular IP addresses with the allow and deny direct
             auth_basic_user_file conf/htpasswd;
         }
 
-#### Complete Example
+## Complete Example
+
 The example shows how to protect your status area with simple authentication combined with access restriction by IP address:
 
     http {
@@ -100,5 +109,5 @@ The example shows how to protect your status area with simple authentication com
             }
         }
     }
-    
-https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+
+[Restricting Access with HTTP Basic Authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/)
