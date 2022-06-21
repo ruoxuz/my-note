@@ -1,5 +1,7 @@
 # 一个项目同时配置多套spring security
 
+配置类
+
     package jp.co.slab.ecsite.common.config;
 
     import jp.co.slab.ecsite.common.util.Sha256PasswordEncoder;
@@ -123,5 +125,21 @@
             }
         }
     }
+
+pom
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>0.9.1</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+    </dependency>
 
 [Multiple Spring Boot Security Configuration](https://medium.com/@igor.bonny/multiple-spring-boot-security-configuration-c876f1b6061e)
