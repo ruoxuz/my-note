@@ -71,6 +71,24 @@ Windows では TeraTerm をインストールして使っていましたが、Ma
 
 　もし記事でおかしい点・分かりにくい点があったり、もっと良い方法があったりしたら、どんどん突っ込んでもらえると助かります！！
 
-<https://qiita.com/blendthink/items/d31e5c19751644129efc>
+# awsにssh接続が拒否された
+
+    $ ssh -i aws-ssh-key.pem ec2-user@[IPaddress]
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    Permissions 0644 for 'aws-ssh-key.pem' are too open.
+    It is required that your private key files are NOT accessible by others.
+    This private key will be ignored.
+    Load key "aws-ssh-key.pem": bad permissions
+    ec2-user@[IPaddress]: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+
+結論
+    Permissions 0644 for 'aws-ssh-key.pem' are too open.という文字通りアクセス権限が問題。
+    なので、$ chmod 700 aws-ssh-key.pemとすれば、問題解決。
 
 control+d退出
+
+[MacのTerminalで「 ssh 接続名」で SSH 接続](https://qiita.com/blendthink/items/d31e5c19751644129efc)
+
+[awsにssh接続が拒否された。](https://qiita.com/hanlio/items/c8a89244be67b1ec5b63)
