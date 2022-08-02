@@ -56,12 +56,15 @@ time_zoneの項目を「Asia/Tokyo」に変更して保存します。
 タイムゾーンが変更されたか確認
 最後にタイムゾーンが変更されたか確認。
 
-mysql> show variables like '%time_zone';
-+------------------+------------+
-| Variable_name    | Value      |
-+------------------+------------+
-| system_time_zone | UTC        |
-| time_zone        | Asia/Tokyo |
-+------------------+------------+
-2 rows in set (0.00 sec)
+    mysql> show variables like '%time_zone';
+    +------------------+------------+
+    | Variable_name    | Value      |
+    +------------------+------------+
+    | system_time_zone | UTC        |
+    | time_zone        | Asia/Tokyo |
+    +------------------+------------+
+    2 rows in set (0.00 sec)
+
 これでOK！
+
+[AWSのRDS（mysql）のタイムゾーンをAsia/Tokyoに変更する](https://qiita.com/chokosuki4400/items/8a37fb6e2c4f71c0bb42)
