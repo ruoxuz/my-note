@@ -1,3 +1,5 @@
+# angular server-side rendering服务端渲染
+
 常见错误，window is undifined, document is undifined, localStorage...
 
     constructor(@Inject(PLATFORM_ID) private platformId: any) {}
@@ -115,5 +117,9 @@ jenkins shell
     ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/workspace/jobpool-prod-tokyo.pem ec2-user@54.95.125.234 sudo cp -r /tmp/jobpool-front/* /usr/share/nginx/html/
     ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/workspace/jobpool-prod-tokyo.pem ec2-user@54.95.125.234 "cd /usr/share/nginx/html/browser/; sudo mkdir health; cd health/; sudo touch index.html"
     ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/workspace/jobpool-prod-tokyo.pem ec2-user@54.95.125.234 "cd /usr/share/nginx/html/; sudo pm2 restart server/main.js"
-    
-https://blog.angular-university.io/angular-universal/
+
+[facebook](https://developers.facebook.com/tools/debug/)
+[twitter](https://cards-dev.twitter.com/validator)
+[line](https://poker.line.naver.jp/)
+
+[Angular Universal: a Complete Practical Guide](https://blog.angular-university.io/angular-universal/)
