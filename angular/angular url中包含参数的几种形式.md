@@ -2,7 +2,7 @@
 
 ## 1. app-routing.module.ts里定义的变量
 
-        {path: 'pay/result/:type', component: PayResultComponent, canActivate: [AuthGuard]},
+    {path: 'pay/result/:type', component: PayResultComponent, canActivate: [AuthGuard]},
 
 赋值方式：
 
