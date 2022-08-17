@@ -52,3 +52,21 @@
         this.paySuccess = true;
         }
     });
+
+### URLSearchParams()
+
+    // Retrieve params via url.search, passed into ctor
+    const url = new URL('https://example.com?foo=1&bar=2');
+    const params = new URLSearchParams(url.search);
+
+    // Pass in a string literal
+    const params2 = new URLSearchParams("foo=1&bar=2");
+    const params2a = new URLSearchParams("?foo=1&bar=2");
+
+    // Pass in a sequence of pairs
+    const params3 = new URLSearchParams([["foo", "1"], ["bar", "2"]]);
+
+    // Pass in a record
+    const params4 = new URLSearchParams({"foo": "1", "bar": "2"});
+
+[URLSearchParams()](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams)
