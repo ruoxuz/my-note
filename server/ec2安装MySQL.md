@@ -2,7 +2,7 @@
 
 1. 添加MySQL Yum Repository到Amazon Linux 2
 
-        sudo yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+        sudo yum install https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm
 
 2. 安装mysql
 
