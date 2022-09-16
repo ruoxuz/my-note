@@ -12,18 +12,20 @@ jenkinsのビルド実行ユーザーは
 ですので、このディレクトリ配下にファイルを配置すれば、
 自動的に読み込んでくれることが分かります。
 
-    $ cd /etc/sudoers.d
+    cd /etc/sudoers.d
 
 ディレクトリに移動して、
 
-    $ touch jenkins
+    touch jenkins
 
 「jenkins」ファイルを作成します。
 
-    $ vi jenkins
+    vi jenkins
 
 「jenkins」ファイルの中身を編集します。
 
     jenkins ALL=(ALL) NOPASSWD:ALL
 
 これで、jenkinsユーザーにsudo 権限を与えることができました。
+
+[jenkinsにsudo権限を与える](https://qiita.com/TomohiroSaito/items/fe8839b47b42d6c3fbee)
