@@ -1,6 +1,7 @@
 # angular server-side rendering服务端渲染
 
-常见错误，window is undifined, document is undifined, localStorage...
+### 常见错误
+#### window is undifined, document is undifined, localStorage...
 
     constructor(@Inject(PLATFORM_ID) private platformId: any) {}
       ngOnInit() {
@@ -25,7 +26,71 @@ pm2, nodejs版本过低会可能会报错
     pm2 start server/main.js
 的时候，一定要在browser,server的上一级文件夹中执行，因为nodejs会在执行的目录之下寻找各个文件。
 
-nginx配置
+#### ERROR NetworkError
+
+1. created "universal-relative.interceptor.ts" file
+2. put this interceptor code in "universal-relative.interceptor.ts" file
+
+        import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+        import { Inject, Injectable, Optional } from '@angular/core';
+        import { REQUEST } from '@nguniversal/express-engine/tokens';
+        import { Request } from 'express';
+
+        // case insensitive check against config and value
+        const startsWithAny = (arr: string[] = []) => (value = '') => {
+            return arr.some(test => value.toLowerCase().startsWith(test.toLowerCase()));
+        };
+
+        // http, https, protocol relative
+        const isAbsoluteURL = startsWithAny(['http', '//']);
+
+        @Injectable()
+        export class UniversalRelativeInterceptor implements HttpInterceptor {
+            constructor(@Optional() @Inject(REQUEST) protected request: Request) {}
+
+            intercept(req: HttpRequest<any>, next: HttpHandler) {
+                if (this.request && !isAbsoluteURL(req.url)) {
+                    const protocolHost = `${this.request.protocol}://${this.request.get(
+                        'host'
+                    )}`;
+                    const pathSeparator = !req.url.startsWith('/') ? '/' : '';
+                    const url = protocolHost + pathSeparator + req.url;
+                    const serverRequest = req.clone({ url });
+                    return next.handle(serverRequest);
+                } else {
+                    return next.handle(req);
+                }
+            }
+        }
+
+3. Go to your "app.server.module.ts" file
+4. add your interceptor like this
+
+        import { NgModule } from '@angular/core';
+        import {
+        ServerModule,
+        ServerTransferStateModule,
+        } from "@angular/platform-server";
+
+        import { AppModule } from './app.module';
+        import { AppComponent } from './app.component';
+        import { UniversalRelativeInterceptor } from 'src/universal-relative.interceptor';
+        import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+        @NgModule({
+        imports: [AppModule, ServerModule, ServerTransferStateModule],
+        providers: [
+            {
+            provide: HTTP_INTERCEPTORS,
+            useClass: UniversalRelativeInterceptor,
+            multi: true,
+            },
+        ],
+        bootstrap: [AppComponent],
+        })
+        export class AppServerModule {}
+
+### nginx配置
 
      server {
         listen       80;
@@ -95,7 +160,7 @@ nginx配置
             location = /50x.html {
         }
     }
-jenkins shell
+### jenkins shell
 
     npm install
     #ng build --prod
@@ -123,3 +188,5 @@ jenkins shell
 [line](https://poker.line.naver.jp/)
 
 [Angular Universal: a Complete Practical Guide](https://blog.angular-university.io/angular-universal/)
+
+https://stackoverflow.com/questions/61450145/how-to-resolve-error-networkerror-at-xmlhttprequest-send-dist-fxcore-server
